@@ -46,6 +46,7 @@ class MobileForm(z3c.form.form.EditForm):
     def applyChanges(self, data):
         # Call super
         content = self.getContent()
+        content.save()
         val = z3c.form.form.EditForm.applyChanges(self, data)
 
         # Write behavior to database
