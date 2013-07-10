@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.0.6 (unreleased)
-------------------
+1.0.5-slc1 (2013-07-10)
+-----------------------
 
 * call content.save() before applyChanges(), fixes issue with changes not being
   saved on newly created objects [reinhardt]
