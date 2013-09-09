@@ -10,12 +10,14 @@ __license__ = "GPL 2"
 __copyright__ = "2009 Twinapex Research"
 
 import logging
+import re
 
 import zope.interface
 from zope.annotation.interfaces import IAnnotations
 
 logger = logging.getLogger("Plone")
 
+from gomobile.mobile.utilities import getCachedMobileProperties
 from mobile.sniffer.detect import  detect_mobile_browser
 from mobile.sniffer.utilities import get_user_agent
 
@@ -41,11 +43,19 @@ class SessionCachedUASniffer(object):
     def __init__(self, context, request):
         self.context = context
         self.request = request
+        self.mobile_properties = getCachedMobileProperties(
+            context, self.request)
 
     def isMobileBrowser(self):
         ua = get_user_agent(self.request)
         if ua:
-            return detect_mobile_browser(ua)
+            is_mobile = detect_mobile_browser(ua)
+            if is_mobile:
+                exclude = getattr(self.mobile_properties,
+                                  "exclude_user_agents", "")
+                if re.match(exclude, ua):
+                    return False
+            return is_mobile
         else:
             # User agent missing from HTTP request
             return False
