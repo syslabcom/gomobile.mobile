@@ -43,8 +43,11 @@ class SessionCachedUASniffer(object):
     def __init__(self, context, request):
         self.context = context
         self.request = request
-        self.mobile_properties = getCachedMobileProperties(
-            context, self.request)
+        try:
+            self.mobile_properties = getCachedMobileProperties(
+                context, self.request)
+        except AttributeError:
+            self.mobile_properties = {}
 
     def isMobileBrowser(self):
         ua = get_user_agent(self.request)
@@ -53,7 +56,7 @@ class SessionCachedUASniffer(object):
             if is_mobile:
                 exclude = getattr(self.mobile_properties,
                                   "exclude_user_agents", "")
-                if re.match(exclude, ua):
+                if exclude and re.search(exclude, ua, flags=re.I):
                     return False
             return is_mobile
         else:
