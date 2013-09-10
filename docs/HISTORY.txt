@@ -4,7 +4,8 @@ Changelog
 1.0.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+* don't show mobile skin for user agents that match
+  mobile_properties.exclude_user_agents [reinhardt]
 
 
 1.0.5-slc1 (2013-07-10)
