@@ -113,6 +113,9 @@
   <!-- Where we store mobile resized copies of images -->
   <property name="image_resize_cache_path" type="string" purge="False">/tmp/gomobile_image_cache</property>
 
+  <!-- If set, user agents that match this RE will be excluded from being treated as mobile (case insensitive) -->
+  <property name="exclude_user_agents" type="string" purge="False"></property>
+
 
  </object>
 </object>
