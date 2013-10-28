@@ -44,8 +44,8 @@ from gomobile.imageinfo.interfaces import IImageInfoUtility
 from gomobile.mobile.utilities import getMobileProperties
 
 # To not exceed this resize dimensions
-safe_width = 1000
-safe_height = 1000
+safe_width = 1024
+safe_height = 1024
 
 logger = logging.getLogger("Resizer")
 
@@ -562,10 +562,12 @@ class ResizeViewHelper(BrowserView):
             height = self.height
 
         if width < 1 or width > safe_width:
-            raise Unauthorized("Invalid width: %d" % width)
+            width = safe_width
+            logger.warn("Invalid width: %d" % width)
 
         if height < 1 or height > safe_height:
-            raise Unauthorized("Invalid height: %d" % height)
+            height = safe_height
+            logger.warn("Invalid height: %d" % height)
 
         return width, height
 
