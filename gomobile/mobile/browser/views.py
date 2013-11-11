@@ -133,7 +133,7 @@ class FolderListingView(BrowserView):
         """ Get the item for which we perform the listing
         """
         context = self.context.aq_inner
-        if IFolderish.providedBy(context):
+        if IFolderish.providedBy(context) and getattr(context, 'portal_type', '') not in ['Topic', 'Collection']:
             return context
         else:
             return context.aq_parent
