@@ -4,7 +4,10 @@ Changelog
 1.0.5-slc3 (unreleased)
 -----------------------
 
-- Nothing changed yet.
+- allow slightly larger widths/heights, don't raise Unauthorized when they're
+  exceeded [reinhardt]
+- use parent's folder listing for collections. Listing the criteria does not
+  make sense in most cases [reinhardt]
 
 
 1.0.5-slc2 (2013-09-10)
