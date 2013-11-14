@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.5-slc3 (unreleased)
+1.0.5-slc3 (2013-11-14)
 -----------------------
 
 - allow slightly larger widths/heights, don't raise Unauthorized when they're
